@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="Money.Views.OutcomeCreate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Money.Views.Converters"
+    mc:Ignorable="d" d:DataContext="{Binding CreateOutcome, Source={StaticResource ViewModelLocator}}"
+    KeyDown="OnPageKeyDown">
+    <Page.Resources>
+        <converters:InverseColorConverter x:Key="InverseColorConverter" />
+        <converters:DateTimeOffsetToDateTimeConverter x:Key="DateTimeOffsetToDateTimeConverter" />
+
+        <Style x:Key="EditorStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Margin" Value="8,4" />
+        </Style>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Save" Label="Save new outcome" Command="{Binding Save}" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="abbPin" Label="Pin to start" Click="abbPin_Click" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Style="{StaticResource EditorStackPanelStyle}" Grid.Row="0">
+                <TextBlock Text="Amount" />
+                <TextBox x:Name="tbxAmount" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" InputScope="Number" FontSize="40" TextAlignment="Right" 
+                 GotFocus="tbxAmount_GotFocus" KeyDown="OnInputKeyDown" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource EditorStackPanelStyle}" Grid.Row="1">
+                <TextBlock Text="Description" />
+                <TextBox x:Name="tbxDescription" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="OnInputKeyDown" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource EditorStackPanelStyle}" Grid.Row="2">
+                <TextBlock Text="When" />
+                <DatePicker x:Name="dprWhen" Date="{Binding When, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateTimeOffsetToDateTimeConverter}, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource EditorStackPanelStyle}" Grid.Row="3">
+                <TextBlock Text="Category" />
+                <GridView x:Name="gvwCategories" ItemsSource="{Binding Categories}" SelectionMode="Multiple" SelectionChanged="gvwCategories_SelectionChanged" KeyDown="OnInputKeyDown">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Grid>
+                                    <Rectangle Height="50">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="{Binding Color}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="{Binding Color, Converter={StaticResource InverseColorConverter}}" />
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

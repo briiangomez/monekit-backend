@@ -1,0 +1,89 @@
+﻿<Page
+    x:Class="Money.Views.Summary"
+    x:Name="root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Money.Views.Controls"
+    xmlns:converters="using:Money.Views.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DataContext="{Binding Group, Source={StaticResource ViewModelLocator}}">
+    <Page.Resources>
+        <converters:SymmaryViewTypeToVisibilityConverter x:Key="BarGraphToCollapsedConverter" ViewType="BarGraph" IsInverted="True" />
+        <converters:SymmaryViewTypeToVisibilityConverter x:Key="PieChartToCollapsedConverter" ViewType="PieChart" IsInverted="True" />
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="btnPinOutcomeCreate" Label="Pin outcome create to start" Click="btnPinOutcomeCreate_Click" />
+            </CommandBar.SecondaryCommands>
+
+            <AppBarButton x:Name="PieChart" Click="PieChart_Click" Label="Pie Chart" ToolTipService.ToolTip="Pie Chart" Visibility="{Binding ViewType, Converter={StaticResource PieChartToCollapsedConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xEB05;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="BarGraph" Click="BarGraph_Click" Label="Bar Graph" ToolTipService.ToolTip="Bar Graph" Visibility="{Binding ViewType, Converter={StaticResource BarGraphToCollapsedConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xEA55;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
+            <!--<AppBarSeparator x:Name="GraphSeparator" />-->
+
+            <!--<AppBarButton Icon="Filter" Label="Filter" IsEnabled="False" />-->
+            <controls:SortAppBarButton SortDescriptor="{Binding SortDescriptor, Mode=TwoWay}" />
+            <!--<AppBarSeparator />-->
+            <!--<AppBarButton Icon="Add" Label="Income" Command="{Binding CreateIncome}" IsEnabled="False" />-->
+            <AppBarButton Icon="Remove" Label="Outcome" Command="{Binding CreateOutcome}" ToolTipService.ToolTip="Create outcome (Ctrl+N)">
+                <AppBarButton.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="Control" Key="N" />
+                </AppBarButton.KeyboardAccelerators>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="LargeSize">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource LargeSize}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PieChart.Visibility" Value="Collapsed" />
+                        <Setter Target="BarGraph.Visibility" Value="Collapsed" />
+                        <!--<Setter Target="GraphSeparator.Visibility" Value="Collapsed" />-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SmallSize">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource SmallSize}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PieChart.Visibility" Value="{Binding ViewType, Converter={StaticResource PieChartToCollapsedConverter}}" />
+                        <Setter Target="BarGraph.Visibility" Value="{Binding ViewType, Converter={StaticResource BarGraphToCollapsedConverter}}" />
+                        <!--<Setter Target="GraphSeparator.Visibility" Value="Visible" />-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Pivot x:Name="pvtGroups" ItemsSource="{Binding Items}" SelectionChanged="pvtGroups_SelectionChanged" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+            <Pivot.ItemTemplate>
+                <DataTemplate>
+                    <controls:SummaryContent x:Name="sumContent" SelectedItem="{Binding Parameter}" PreferedViewType="{Binding Parent.ViewType}" SortDescriptor="{Binding Parent.SortDescriptor}" />
+                </DataTemplate>
+            </Pivot.ItemTemplate>
+            <Pivot.ItemContainerStyle>
+                <Style TargetType="PivotItem">
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </Pivot.ItemContainerStyle>
+        </Pivot>
+        <controls:EmptyMessage ItemCount="{Binding Items.Count}" Additional="Start by adding items with date falling here" />
+    </Grid>
+</Page>

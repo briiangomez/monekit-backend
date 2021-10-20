@@ -1,0 +1,28 @@
+﻿<div @ref="Container" class="modal fade" tabindex="-1" role="dialog">
+    <div class="@DialogCssClass" role="document">
+        <form @onsubmit="@OnFormSubmit" @onsubmit:preventDefault="true">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        @if (!String.IsNullOrEmpty(TitleIcon))
+                        {
+                            <Icon Identifier="@TitleIcon" class="mr-1" />
+                        }
+
+                        @Title
+                    </h4>
+                    <button type="button" class="close" @onclick="@Hide">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body @BodyCssClass">
+                    @ChildContent
+                </div>
+                <div class="modal-footer">
+                    @Buttons
+                    <button type="button" class="btn btn-default" @onclick="@OnCloseButtonClick">@CloseButtonText</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

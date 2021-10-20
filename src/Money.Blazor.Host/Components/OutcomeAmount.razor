@@ -1,0 +1,34 @@
+﻿@inherits ModalDialog
+
+<Modal @ref="Modal" Title="Change an amount of the expense">
+    <ChildContent>
+        <Validation ErrorMessages="@ErrorMessages" />
+        <div class="form-row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label for="expense-amount">Amount:</label>
+                    <AmountBox Id="expense-amount" AutoFocus="true" AutoSelect="true" @bind-Value="@Amount" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="expense-currency">Currency:</label>
+                    <select class="form-control" id="expense-currency" @bind="@Currency">
+                        @if (Currencies != null)
+                        {
+                            @foreach (var currency in Currencies)
+                            {
+                                <option value="@currency.UniqueCode">
+                                    @currency.Symbol
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-primary" @onclick="@OnSaveClick">Save</button>
+    </Buttons>
+</Modal>

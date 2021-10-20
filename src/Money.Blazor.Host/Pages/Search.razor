@@ -1,0 +1,50 @@
+﻿@page "/search"
+@attribute [Authorize]
+
+<Money.Components.Title Icon="search" Main="Search" Sub="Search for expenses" />
+<ExceptionPanel />
+
+<div class="search">
+    <form @onsubmit="@(() => { Navigator.OpenSearch(FormText, DefaultSort.Equals(FormSort) ? null : FormSort); StateHasChanged(); })">
+        <div class="form-row">
+            <div class="col-12 col-md">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Search..." @bind="@FormText" />
+                </div>
+            </div>
+            <div class="col-auto col-md-auto">
+                <div class="form-group">
+                    <SortButton TType="@OutcomeOverviewSortType" @bind-Current="@FormSort" />
+                </div>
+            </div>
+            <div class="col col-md-auto">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <Icon Identifier="search" />
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <Loading Context="@Loading">
+        @if (Models == null || Models.Count == 0)
+        {
+            <Alert Message="No matching expense found." Mode="@AlertMode.Warning" />
+        }
+        else
+        {
+            <div class="cards">
+                <ExpenseCardContext>
+                    @foreach (var item in Models)
+                    {
+                        <ExpenseCard Model="@item" />
+                    }
+                </ExpenseCardContext>
+            </div>
+
+            <Paging Context="@PagingContext" />
+        }
+    </Loading>
+</div>

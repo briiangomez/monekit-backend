@@ -1,0 +1,76 @@
+﻿@if (IsAuthenticated || Loading.IsLoading)
+{
+    <ul class="nav navbar-nav @ListCssClass">
+        <Loading Context="@Loading">
+            <LoadingContent>
+                <li class="nav-item">
+                    <span class="navbar-text">
+                        Loading...
+                    </span>
+                </li>
+            </LoadingContent>
+            <ChildContent>
+                @if (Profile != null)
+                {
+                    <li class="nav-item dropdown d-none d-lg-block">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                            <Icon Identifier="user-circle" />
+                            Me
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a class="dropdown-item" href="@Navigator.UrlUserProfile()">
+                                    <Icon Identifier="address-card" />
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="@Navigator.UrlUserPassword()">
+                                    <Icon Identifier="key" />
+                                    Password
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="@Navigator.UrlUserSettings()">
+                                    <Icon Identifier="cog" />
+                                    Settings
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger cursor-pointer" @onclick="@OnLogoutAsync">
+                                    <Icon Prefix="fas" Identifier="sign-out-alt" />
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="d-block d-lg-none">
+                        <a class="nav-link" href="@Navigator.UrlUserProfile()">
+                            <Icon Identifier="address-card" />
+                            Profile
+                        </a>
+                    </li>
+                    <li class="d-block d-lg-none">
+                        <a class="nav-link" href="@Navigator.UrlUserPassword()">
+                            <Icon Identifier="key" />
+                            Password
+                        </a>
+                    </li>
+                    <li class="d-block d-lg-none">
+                        <a class="nav-link" href="@Navigator.UrlUserSettings()">
+                            <Icon Identifier="cog" />
+                            Settings
+                        </a>
+                    </li>
+                    <li class="d-block d-lg-none">
+                        <a class="nav-link text-danger cursor-pointer" @onclick="@OnLogoutAsync">
+                            <Icon Prefix="fas" Identifier="sign-out-alt" />
+                            Logout
+                        </a>
+                    </li>
+                }
+            </ChildContent>
+        </Loading>
+    </ul>
+}

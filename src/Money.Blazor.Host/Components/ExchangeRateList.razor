@@ -1,0 +1,46 @@
+﻿@inherits ModalDialog
+
+<Modal @ref="Modal" Title="@Title">
+    <ChildContent>
+        @if (Models != null)
+        {
+            if (Models.Count > 0)
+            {
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Valid from</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Models)
+                        {
+                            <tr>
+                                <td>@CurrencyFormatter.Format(new Price(1, item.SourceCurrency))</td>
+                                <td>@CurrencyFormatter.Format(new Price((decimal)item.Rate, TargetCurrency))</td>
+                                <td>
+                                    <DateValue Value="item.ValidFrom" />
+                                </td>
+                                <td class="min-column">
+                                    <div class="actions">
+                                        <IconButton Icon="trash-alt" ToolTip="Delete" Click="@(async () => { await OnDeleteClickAsync(item); StateHasChanged(); })" />
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <Alert Title="No data." Message="Let's add some exchange rates." Mode="@AlertMode.Warning" />
+            }
+        }
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-primary" @onclick="@OnAddClick">Add</button>
+    </Buttons>
+</Modal>

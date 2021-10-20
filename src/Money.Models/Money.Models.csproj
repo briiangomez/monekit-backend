@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Builders\**" />
+    <EmbeddedResource Remove="Builders\**" />
+    <None Remove="Builders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Money\Money.csproj" />
+    <ProjectReference Include="..\Neptuo\Neptuo.csproj" />
+  </ItemGroup>
+
+</Project>

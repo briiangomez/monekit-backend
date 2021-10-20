@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Money.Models.Builders</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Money.Models.EntityFrameworkCore\Money.Models.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Money.Models\Money.Models.csproj" />
+    <ProjectReference Include="..\Money\Money.csproj" />
+    <ProjectReference Include="..\Neptuo\Neptuo.csproj" />
+  </ItemGroup>
+
+</Project>

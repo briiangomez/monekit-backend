@@ -1,0 +1,66 @@
+﻿@inherits MainMenuBase
+
+<NavLink class="navbar-brand" href="@Navigator.UrlSummary()">
+    <img srcset="images/icon-w-40x40.png, images/icon-w-192x192.png 1.5x" src="images/icon-w-40x40.png" width="40" title="Money by Neptuo" />
+    Money
+    <span class="brand-author">by Neptuo</span>
+    <AuthorizeView>
+        <Authorized>
+            <ApiHubConnectionStatus IsTextVisible="false" />
+        </Authorized>
+    </AuthorizeView>
+</NavLink>
+<HamburgerButton CssClass="navbar-toggler" Click="@OnMainMenuToggleClick" />
+<div class="navbar-collapse @(IsMainMenuVisible ? "" : "collapse")">
+    <ServerConnection>
+        <Online>
+
+            <ul class="nav navbar-nav mr-auto mt-3 mt-lg-0 @MenuLeftMarginCssClass">
+                <MainMenuLink href="@Navigator.UrlSummary()" PageType="@typeof(Pages.SummaryMonth)">
+                    <Icon Identifier="chart-pie" />
+                    Monthly
+                </MainMenuLink>
+                <MainMenuLink Href="@Navigator.UrlSummary(new YearModel(DateTime.Today.Year))" PageType="@typeof(Pages.SummaryYear)">
+                    <Icon Identifier="circle" />
+                    Yearly
+                </MainMenuLink>
+                <MainMenuLink Href="@Navigator.UrlTrends()">
+                    <Icon Prefix="fas" Identifier="chart-bar" />
+                    Trends
+                </MainMenuLink>
+                <MainMenuLink Href="@Navigator.UrlSearch()">
+                    <Icon Identifier="search" />
+                    Search
+                </MainMenuLink>
+                <MainMenuSeparator />
+                <MainMenuLink Href="@Navigator.UrlCategories()">
+                    <Icon Identifier="tag" />
+                    Categories
+                </MainMenuLink>
+                <MainMenuLink Href="@Navigator.UrlCurrencies()">
+                    <Icon Identifier="pound-sign" />
+                    Currencies
+                </MainMenuLink>
+                <MainMenuSeparator />
+                <li class="nav-item">
+                    <PwaInstall />
+                </li>
+                <MainMenuLink Href="@Navigator.UrlAbout()">
+                    <Icon Identifier="info-circle" />
+                    <span class="d-lg-none d-xl-inline">
+                        About
+                    </span>
+                </MainMenuLink>
+            </ul>
+            <AuthorizeView>
+                <Authorized>
+                    <ul class="nav navbar-nav @MenuLeftMarginCssClass">
+                        <MainMenuSeparator IsVisibleOnDesktop="false" />
+                    </ul>
+                </Authorized>
+            </AuthorizeView>
+            <UserInfo ListCssClass="@MenuLeftMarginCssClass" />
+
+        </Online>
+    </ServerConnection>
+</div>

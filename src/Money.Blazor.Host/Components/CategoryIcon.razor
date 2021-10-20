@@ -1,0 +1,16 @@
+﻿@inherits ModalDialog
+
+<Modal @ref="Modal" Title="Pick an Icon for the Category" Size="@Size.Large">
+    <ChildContent>
+
+        @foreach (string icon in Icons)
+        {
+            <button class="btn btn-link btn-icon btn-selectable @(Icon == icon ? "btn-selectable-selected" : "")" @onclick="@(() => Icon = icon)">
+                @icon
+            </button>
+        }
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-primary" @onclick="@OnSaveClick">Save</button>
+    </Buttons>
+</Modal>

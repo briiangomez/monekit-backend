@@ -1,0 +1,16 @@
+﻿
+<li class="nav-item">
+    <a class="nav-link @CssClass" href="@Url">@ChildContent</a>
+</li>
+
+@code
+{
+    [Parameter]
+    public string CssClass { get; set; }
+
+    [Parameter]
+    public string Url { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

@@ -1,0 +1,18 @@
+﻿@if (IsOverlay)
+{
+    <div class="loading @(IsLoading ? "loading-active" : "")">
+        @ChildContent
+        <div class="mask"></div>
+    </div>
+}
+else
+{
+    if (IsLoading)
+    {
+        @LoadingContent
+    }
+    else
+    {
+        @ChildContent
+    }
+}

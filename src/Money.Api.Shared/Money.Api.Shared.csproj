@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Money</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.0-rc.1.21451.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Money.Accounts.Models\Money.Accounts.Models.csproj" />
+    <ProjectReference Include="..\Money.Accounts\Money.Accounts.csproj" />
+    <ProjectReference Include="..\Money.Models\Money.Models.csproj" />
+    <ProjectReference Include="..\Money\Money.csproj" />
+    <ProjectReference Include="..\Neptuo\Neptuo.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{6D351EA3-9664-48F9-8937-EA14924755FE}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Money</RootNamespace>
+    <AssemblyName>Money.UI.Universal</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>Money.UI.Universal_StoreKey.pfx</PackageCertificateKeyFile>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>AF5A5DD987918F293027493DB516DA0A664CAED9</PackageCertificateThumbprint>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bootstrap\BootstrapTask.cs" />
+    <Compile Include="Bootstrap\ColorConverter.cs" />
+    <Compile Include="Bootstrap\CompositeTypeFormatterFactory.cs" />
+    <Compile Include="Bootstrap\DevelopmentService.cs" />
+    <Compile Include="Bootstrap\StorageFactory.cs" />
+    <Compile Include="Bootstrap\UpgradeService.cs" />
+    <Compile Include="Bootstrap\UpgradeServiceBase.cs" />
+    <Compile Include="Bootstrap\UserCommandDispatcher.cs" />
+    <Compile Include="Bootstrap\UserKeyEventExtender.cs" />
+    <Compile Include="Bootstrap\UserQueryDispatcher.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceProvider.cs" />
+    <Compile Include="Services\AppDataService.cs" />
+    <Compile Include="Services\CurrencyCache.cs" />
+    <Compile Include="Services\CurrencyCache.Model.cs" />
+    <Compile Include="Services\Globalization\DefaultCurrency.cs" />
+    <Compile Include="Services\Globalization\DefaultCurrencyProvider.cs" />
+    <Compile Include="Services\Globalization\ICurrency.cs" />
+    <Compile Include="Services\Globalization\ICurrencyProvider.cs" />
+    <Compile Include="Services\IDevelopmentService.cs" />
+    <Compile Include="Services\MessageBuilder.cs" />
+    <Compile Include="Services\PriceCalculator.cs" />
+    <Compile Include="Services\PriceCalculator.ExchangeRateModelComparer.cs" />
+    <Compile Include="Services\RestartService.cs" />
+    <Compile Include="Services\Settings\ApplicationDataCompositeStorage.cs" />
+    <Compile Include="Services\Settings\ApplicationSettingsService.cs" />
+    <Compile Include="Services\Settings\IUserPreferenceService.cs" />
+    <Compile Include="Services\Tiles\TileService.cs" />
+    <Compile Include="UiThreadEventHandler.cs" />
+    <Compile Include="ViewModels\CategoryEditViewModel.cs" />
+    <Compile Include="ViewModels\CategoryListViewModel.cs" />
+    <Compile Include="ViewModels\Collections\ColorObservableCollection.cs" />
+    <Compile Include="ViewModels\Collections\IconObservableCollection.cs" />
+    <Compile Include="ViewModels\Commands\CategoryDeleteCommand.cs" />
+    <Compile Include="ViewModels\Commands\CreateOutcomeCommand.cs" />
+    <Compile Include="ViewModels\Commands\CurrencyDeleteCommand.cs" />
+    <Compile Include="ViewModels\Commands\CurrencyDeleteExchangeRateCommand.cs" />
+    <Compile Include="ViewModels\Commands\CurrencySetAsDefaultCommand.cs" />
+    <Compile Include="ViewModels\Commands\DeleteOutcomeCommand.cs" />
+    <Compile Include="ViewModels\Commands\DomainCommand.cs" />
+    <Compile Include="ViewModels\Commands\NavigateBackCommand.cs" />
+    <Compile Include="ViewModels\Commands\NavigateCommand.cs" />
+    <Compile Include="ViewModels\Commands\SaveOutcomeCommand.cs" />
+    <Compile Include="ViewModels\CurrencyEditViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyListViewModel.cs" />
+    <Compile Include="ViewModels\GroupItemViewModel.cs" />
+    <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\ISummaryItemViewModel.cs" />
+    <Compile Include="ViewModels\MainMenuListFactory.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MigrateViewModel.cs" />
+    <Compile Include="ViewModels\Navigation\INavigator.cs" />
+    <Compile Include="ViewModels\Navigation\INavigatorForm.cs" />
+    <Compile Include="ViewModels\Navigation\INavigatorMessageForm.cs" />
+    <Compile Include="ViewModels\NotEmptyMonthCategoryGroupProvider.cs" />
+    <Compile Include="ViewModels\OutcomeOverviewViewModel.cs" />
+    <Compile Include="ViewModels\OutcomeViewModel.cs" />
+    <Compile Include="ViewModels\OverviewSortType.cs" />
+    <Compile Include="ViewModels\OverviewViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\AboutParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CategoryChangeColorParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CategoryChangeIconParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CategoryCreateParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CategoryListParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CategoryRenameParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CurrencyAddExchangeRateParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CurrencyNewParameter.cs" />
+    <Compile Include="ViewModels\Parameters\CurrencyParameter.cs" />
+    <Compile Include="ViewModels\Parameters\EmptyParameter.cs" />
+    <Compile Include="ViewModels\Parameters\GroupParameter.cs" />
+    <Compile Include="ViewModels\Parameters\IGroupParameter.cs" />
+    <Compile Include="ViewModels\Parameters\MigrateParameter.cs" />
+    <Compile Include="ViewModels\Parameters\OutcomeParameter.cs" />
+    <Compile Include="ViewModels\Parameters\OverviewParameter.cs" />
+    <Compile Include="ViewModels\Parameters\SummaryParameter.cs" />
+    <Compile Include="ViewModels\SummaryCategoryViewModel.cs" />
+    <Compile Include="ViewModels\SummaryPeriodType.cs" />
+    <Compile Include="ViewModels\SummarySortType.cs" />
+    <Compile Include="ViewModels\SummaryTotalViewModel.cs" />
+    <Compile Include="ViewModels\SummaryViewModel.cs" />
+    <Compile Include="ViewModels\SummaryViewModel.IProvider.cs" />
+    <Compile Include="ViewModels\SummaryViewType.cs" />
+    <Compile Include="ViewModels\SummaryViewTypeDescriptor.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="Views\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategoryEdit.xaml.cs">
+      <DependentUpon>CategoryEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategoryList.xaml.cs">
+      <DependentUpon>CategoryList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Bar.xaml.cs">
+      <DependentUpon>Bar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Currency.cs" />
+    <Compile Include="Views\Controls\DevelopmentTools.xaml.cs">
+      <DependentUpon>DevelopmentTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\EmptyMessage.xaml.cs">
+      <DependentUpon>EmptyMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\LastException.xaml.cs">
+      <DependentUpon>LastException.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\LoadingType.cs" />
+    <Compile Include="Views\Controls\MainMenuAppBarButton.cs" />
+    <Compile Include="Views\Controls\MainMenuEventArgs.cs" />
+    <Compile Include="Views\Controls\MainMenuListView.cs" />
+    <Compile Include="Views\Controls\MainMenuMobile.xaml.cs">
+      <DependentUpon>MainMenuMobile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PieChart.xaml.cs">
+      <DependentUpon>PieChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PieChartItem.xaml.cs">
+      <DependentUpon>PieChartItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SortAppBarButton.cs" />
+    <Compile Include="Views\Controls\SummaryContent.xaml.cs">
+      <DependentUpon>SummaryContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SummaryItemTemplateSelector.cs" />
+    <Compile Include="Views\Controls\ValueChangedLock.cs" />
+    <Compile Include="Views\Converters\BoolConverter.cs" />
+    <Compile Include="Views\Converters\ColorToColorConverter.cs" />
+    <Compile Include="Views\Converters\CuttingConverter.cs" />
+    <Compile Include="Views\Converters\DateTimeOffsetToDateTimeConverter.cs" />
+    <Compile Include="Views\Converters\DateToStringConverter.cs" />
+    <Compile Include="Views\Converters\ExchangeRateListToStringConverter.cs" />
+    <Compile Include="Views\Converters\InverseColorConverter.cs" />
+    <Compile Include="Views\Converters\NullConverter.cs" />
+    <Compile Include="Views\Converters\SymmaryViewTypeToVisibilityConverter.cs" />
+    <Compile Include="Views\Converters\TypeConverterHelper.cs" />
+    <Compile Include="Views\CurrencyEdit.xaml.cs">
+      <DependentUpon>CurrencyEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrencyList.xaml.cs">
+      <DependentUpon>CurrencyList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DesignData\MockDevelopmentService.cs" />
+    <Compile Include="Views\DesignData\MockNavigator.cs" />
+    <Compile Include="Views\DesignData\MockQueryDispatcher.cs" />
+    <Compile Include="Views\DesignData\MockUpgradeService.cs" />
+    <Compile Include="Views\DesignData\TestUpgradeService.cs" />
+    <Compile Include="Views\DesignData\ViewModelLocator.cs" />
+    <Compile Include="Views\Dialogs\CategoryChangeColor.cs" />
+    <Compile Include="Views\Dialogs\CategoryChangeIcon.cs" />
+    <Compile Include="Views\Dialogs\CategoryName.xaml.cs">
+      <DependentUpon>CategoryName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\CategoryPicker.xaml.cs">
+      <DependentUpon>CategoryPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\CurrencyAddExchangeRateWizard.cs" />
+    <Compile Include="Views\Dialogs\CurrencyCreate.cs" />
+    <Compile Include="Views\Dialogs\CurrencyExchangeRate.xaml.cs">
+      <DependentUpon>CurrencyExchangeRate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\CurrencyName.xaml.cs">
+      <DependentUpon>CurrencyName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\IconPicker.xaml.cs">
+      <DependentUpon>IconPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\IWizard.cs" />
+    <Compile Include="Views\Dialogs\OutcomeAmount.xaml.cs">
+      <DependentUpon>OutcomeAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\OutcomeCreate.cs" />
+    <Compile Include="Views\Dialogs\OutcomeCreatedGuidePost.xaml.cs">
+      <DependentUpon>OutcomeCreatedGuidePost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\OutcomeDescription.xaml.cs">
+      <DependentUpon>OutcomeDescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\OutcomeWhen.xaml.cs">
+      <DependentUpon>OutcomeWhen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Empty.xaml.cs">
+      <DependentUpon>Empty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ITemplate.cs" />
+    <Compile Include="Views\Migrate.xaml.cs">
+      <DependentUpon>Migrate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavigationEventArgsExtensions.cs" />
+    <Compile Include="Views\Navigation\AppNavigator.cs" />
+    <Compile Include="Views\Navigation\AppNavigatorForm.cs" />
+    <Compile Include="Views\Navigation\ContentDialogMessageForm.cs" />
+    <Compile Include="Views\Navigation\INavigatorPage.cs" />
+    <Compile Include="Views\Navigation\INavigatorParameterPage.cs" />
+    <Compile Include="Views\Navigation\NavigationParameterAttribute.cs" />
+    <Compile Include="Views\Navigation\NavigatorParameterCollection.cs" />
+    <Compile Include="Views\Navigation\PageNavigatorForm.cs" />
+    <Compile Include="Views\Navigation\WizardNavigatorForm.cs" />
+    <Compile Include="Views\OutcomeCreate.xaml.cs">
+      <DependentUpon>OutcomeCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Overview.xaml.cs">
+      <DependentUpon>Overview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StateTriggers\MobileStateTrigger.cs" />
+    <Compile Include="Views\Summary.xaml.cs">
+      <DependentUpon>Summary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Template.xaml.cs">
+      <DependentUpon>Template.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateMobile.xaml.cs">
+      <DependentUpon>TemplateMobile.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\CitySilhouette.png" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <None Include="Money.UI.Universal_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Properties\Default.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.1.9</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Money.Models.EntityFrameworkCore\Money.Models.EntityFrameworkCore.csproj">
+      <Project>{1ad9f4c2-f7e0-4179-8938-d39a2d291bdf}</Project>
+      <Name>Money.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Money.Models.Builders\Money.Models.Builders.csproj">
+      <Project>{debb89d5-7ba3-465c-b6d0-927fd61c0dfb}</Project>
+      <Name>Money.Models.Builders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Money.Models\Money.Models.csproj">
+      <Project>{ca416337-12d3-4406-85c8-2717fab7a7d2}</Project>
+      <Name>Money.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Money\Money.csproj">
+      <Project>{cced2dc9-b1bc-4a66-a7c3-488cf1de3616}</Project>
+      <Name>Money</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Neptuo.EntityFrameworkCore\Neptuo.EntityFrameworkCore.csproj">
+      <Project>{8d844524-f0fc-4df7-9df6-704327812309}</Project>
+      <Name>Neptuo.EntityFrameworkCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Neptuo.Json\Neptuo.Json.csproj">
+      <Project>{2ceb371b-b0ef-4335-99e3-83f30b1ef21e}</Project>
+      <Name>Neptuo.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Neptuo\Neptuo.csproj">
+      <Project>{c637b589-5769-4661-9b6d-a34571a5ae08}</Project>
+      <Name>Neptuo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Views\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CategoryEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CategoryList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\Bar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\DevelopmentTools.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\EmptyMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\LastException.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\Loading.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\MainMenuMobile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\PieChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\PieChartItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\SummaryContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CurrencyEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CurrencyList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\CategoryName.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\CategoryPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\CurrencyExchangeRate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\CurrencyName.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\IconPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\OutcomeAmount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\OutcomeCreatedGuidePost.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\OutcomeDescription.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\OutcomeWhen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Empty.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Migrate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutcomeCreate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Overview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Summary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Template.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TemplateMobile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Money.UI_TemporaryKey.pfx" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.17763.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,33 @@
+﻿@page "/expenses"
+@attribute [Authorize]
+
+<Title Icon="signal" Main="Offline mode" Sub="You can create expenses even without the internet">
+    <ButtonContent>
+        <ExpenseCreateButton />
+    </ButtonContent>
+</Title>
+<ExceptionPanel />
+
+@BeforeContent
+
+<div class="expenses-bag">
+    <Loading Context="@Loading">
+        @if (Models.Count == 0)
+        {
+            <Alert Title="No data." Message="Let's add some expenses." Mode="@AlertMode.Warning" />
+        }
+        else
+        {
+            <ExpenseBagPublishButton />
+
+            <div class="cards">
+                <CascadingValue Value="@this">
+                    @foreach (var model in Models)
+                    {
+                        <ExpenseCard Model="@model" />
+                    }
+                </CascadingValue>
+            </div>
+        }
+    </Loading>
+</div>

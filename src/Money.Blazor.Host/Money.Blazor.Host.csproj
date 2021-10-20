@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <RootNamespace>Money</RootNamespace>
+    <VersionPrefix>1.16.1.0</VersionPrefix>
+    <PublishDomain>app.money.neptuo.com</PublishDomain>
+    <TargetFramework>net6.0</TargetFramework>
+    <UseBlazorWebAssembly>true</UseBlazorWebAssembly>
+    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
+    <PackageReference Include="Blazored.SessionStorage" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Money.Accounts.Models\Money.Accounts.Models.csproj" />
+    <ProjectReference Include="..\Money.Accounts\Money.Accounts.csproj" />
+    <ProjectReference Include="..\Money.Api.Shared\Money.Api.Shared.csproj" />
+    <ProjectReference Include="..\Money.Models\Money.Models.csproj" />
+    <ProjectReference Include="..\Money\Money.csproj" />
+    <ProjectReference Include="..\Neptuo\Neptuo.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\index.html" CopyToOutputDirectory="PreserveNewest" />
+    <Content Remove="**\*.svg" />
+    <Compile Update="**\*.razor.cs" DependentUpon="%(Filename)" />
+    <None Update="**\*.json.defaults" DependentUpon="%(Filename)" />
+    <Watch Include="**\*.razor" />
+  </ItemGroup>
+
+  <!-- PWA -->
+  <PropertyGroup>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <!-- GitHubPages publish -->
+  <Target Name="PublishGitHubFiles" AfterTargets="ComputeFilesToPublish">
+    <!-- Declare -->
+    <PropertyGroup>
+      <Wwwroot>wwwroot</Wwwroot>
+      <CName>$(Wwwroot)\CNAME</CName>
+      <Html404>$(Wwwroot)\404.html</Html404>
+      <NoJekyll>$(Wwwroot)\.nojekyll</NoJekyll>
+    </PropertyGroup>
+
+    <!-- Create content -->
+    <Copy SourceFiles="wwwroot\index.html" DestinationFiles="$(OutputPath)$(Html404)" />
+    <WriteLinesToFile File="$(OutputPath)$(CName)" Lines="$(PublishDomain)" Overwrite="true" />
+    <WriteLinesToFile File="$(OutputPath)$(NoJekyll)" Lines="" Overwrite="true" />
+
+    <!-- Publish -->
+    <ItemGroup>
+      <CustomPublishFile Include="$(OutputPath)$(CName)" RelativePath="$(CName)" />
+      <CustomPublishFile Include="$(OutputPath)$(Html404)" RelativePath="$(Html404)" />
+      <CustomPublishFile Include="$(OutputPath)$(NoJekyll)" RelativePath="$(NoJekyll)" />
+
+      <ResolvedFileToPublish Include="@(CustomPublishFile->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(CustomPublishFile.RelativePath)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

@@ -1,0 +1,128 @@
+﻿@typeparam T
+
+<Title Icon="signal" Main="Summary" Sub="@SubTitle">
+    <ButtonContent>
+        <IncomeCreateButton OnClick="IncomeCreate.Show" />
+        <ExpenseCreateButton />
+    </ButtonContent>
+</Title>
+<ExceptionPanel />
+
+<IncomeCreate @ref="IncomeCreate" />
+
+<div class="summary">
+    <ExpenseBagPublishButton Text="You have expenses created when offline. Upload them now..." class="mb-4" />
+
+    @if (SelectedPeriod != null)
+    { 
+        <div class="mb-3">
+            <SortButton TType="SummarySortType" @bind-Current="@SortDescriptor" Changed="@OnSorted" />
+
+            <button type="button" class="btn btn-primary" @onclick="@OpenPeriodSelectorAsync">
+                @SelectedPeriod.ToString()
+                <Icon Identifier="caret-down" />
+            </button>
+
+            @if (PeriodGuesses != null && PeriodGuesses.Count > 0)
+            {
+                <span class="d-none d-md-inline">
+                    @foreach (var guess in PeriodGuesses)
+                    {
+                        <a class="btn btn-link" href="@UrlSummary(guess)">
+                            @guess
+                        </a>
+                    }
+                </span>
+            }
+
+            <span class="pl-2">
+                <Loading Context="@CategoriesLoading" />
+            </span>
+        </div>
+    }
+
+    @if (ExpenseTotal != null && ExpenseTotal.Value == 0)
+    {
+        <Alert Title="No data." Message="Let's add some expenses." Mode="@AlertMode.Warning" />
+    }
+    else if (Categories != null)
+    {
+        <div class="graph">
+            @if (ExpenseTotal != null)
+            {
+                <div class="card bar-graph bar-graph-summary" @onclick="@(() => OpenOverview(SelectedPeriod))">
+                    <div class="card-body">
+                        <h3 class="description">
+                            <span class="icon">📈</span>
+                            <span class="name">Summary</span>
+                        </h3>
+
+                        <div class="value">
+                            <div class="amount">
+                                @if (IncomeTotal != null)
+                                {
+                                    <span class="text-success mr-2" @onclick="@(() => OpenOverviewIncomes(SelectedPeriod))">
+                                        @FormatPrice(IncomeTotal)
+                                    </span>
+                                }
+
+                                <span class="text-danger">
+                                    @FormatPrice(ExpenseTotal)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var category in Categories)
+            {
+                <div class="card bar-graph" @onclick="@(() => OpenOverview(SelectedPeriod, category.Key))">
+                    <div class="card-body">
+                        <h3 class="description" title="@category.Description">
+                            <span class="icon">@category.Icon</span>
+                            <span class="name">@category.Name</span>
+                        </h3>
+
+                        <div class="value">
+                            <div class="amount">@FormatPrice(category.TotalAmount)</div>
+                            <div class="bar" style="width: @GetPercentualValue(category)%; background-color: @category.Color.ToHashCode();"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <Modal @ref="PeriodSelectorModal" Title="Select a period" TitleIcon="calendar" BodyCssClass="p-0">
+        <Loading Context="@PeriodsLoading">
+            <LoadingContent>
+                <div class="p-3">
+                    <i>Loading...</i>
+                </div>
+            </LoadingContent>
+            <ChildContent>
+                @if (Periods != null)
+                {
+                    if (Periods.Count > 0)
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var item in Periods)
+                            {
+                                <a @onclick="@(() => PeriodSelectorModal.Hide())" href="@UrlSummary(item)" class="list-group-item @(item.Equals(SelectedPeriod) ? "active" : null)">
+                                    @item.ToString()
+                                </a>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="p-3">
+                            <Alert Title="No data." Message="Let's add some expenses." Mode="@AlertMode.Warning" />
+                        </div>
+                    }
+                }
+            </ChildContent>
+        </Loading>
+    </Modal>
+</div>

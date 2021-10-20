@@ -1,0 +1,37 @@
+﻿@page "/test"
+
+<Title Main="Test" />
+
+<div style="margin-top: 5rem;">
+    @if (ExpenseTemplates == null)
+    {
+        <em>Loading...</em>
+    }
+    else
+    {
+        <table>
+            @foreach (var expenseTemplate in ExpenseTemplates)
+            {
+                <tr>
+                    <td>
+                        @expenseTemplate.Key
+                    </td>
+                    <td>
+                        @expenseTemplate.Amount
+                    </td>
+                    <td>
+                        @expenseTemplate.Description
+                    </td>
+                    <td>
+                        @expenseTemplate.CategoryKey
+                    </td>
+                    <td>
+                        <button class="btn btn-small btn-danger" @onclick="async () => await Commands.HandleAsync(new DeleteExpenseTemplate(expenseTemplate.Key))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <button class="btn btn-primary" @onclick="CreateAsync">Create expense template</button>
+    }
+</div>

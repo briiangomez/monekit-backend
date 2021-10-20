@@ -1,0 +1,32 @@
+﻿@inject Navigator Navigator
+@inject NavigationManager UrlManager
+@inject ILogFactory LogFactory
+
+<Money.Components.Title Icon="user" Main="User Account" Sub="Change your account settings" />
+
+<TabSet>
+    <Tab Url="@Navigator.UrlUserProfile()" CssClass="@GetActiveCssClass(Navigator.UrlUserProfile())">
+        <Icon Identifier="address-card" />
+        Profile
+    </Tab>
+    <Tab Url="@Navigator.UrlUserPassword()" CssClass="@GetActiveCssClass(Navigator.UrlUserPassword())">
+        <Icon Identifier="key" />
+        Password
+    </Tab>
+    <Tab Url="@Navigator.UrlUserSettings()" CssClass="@GetActiveCssClass(Navigator.UrlUserSettings())">
+        <Icon Identifier="cog" />
+        Settings
+    </Tab>
+</TabSet>
+
+@code
+{
+    string GetActiveCssClass(string url)
+    {
+        string relative = "/" + UrlManager.ToBaseRelativePath(UrlManager.Uri);
+
+        LogFactory.Scope("UserHead").Debug($"GetActiveCssClass: '{url}' == '{relative}'.");
+
+        return relative == url ? "active" : null;
+    }
+}

@@ -1,0 +1,72 @@
+﻿@typeparam T
+
+<Title Icon="calendar" Main="@Title" Sub="@SubTitle">
+    <ButtonContent>
+        @{
+            var trendsButton = TrendsTitleUrl();
+        }
+        @if (trendsButton != null)
+        {
+            <button class="btn btn-secondary" @onclick="(() => Navigator.Open(trendsButton.Value.url))">
+                <Icon Prefix="fas" Identifier="chart-bar" />
+                <span class="d-none d-md-inline">
+                    @trendsButton.Value.title
+                </span>
+            </button>
+        }
+        <ExpenseCreateButton CategoryKey="CategoryKey" />
+    </ButtonContent>
+</Title>
+<ExceptionPanel />
+
+<div class="overview">
+    <Loading Context="@Loading" IsOverlay="true">
+        @{
+            var incomeUrl = ListIncomeUrl();
+            var trendsUrl = TrendsSelectedPeriodUrl();
+        }
+        @if (incomeUrl != null || trendsUrl != null)
+        {
+            <ul class="nav nav-pills float-left">
+                @if (incomeUrl != null)
+                {
+                    <li>
+                        <a class="nav-link" href="@incomeUrl">Incomes</a>
+                    </li>
+                }
+                <li>
+                    <a class="nav-link active" href="@Navigator.UrlCurrent()">Expenses</a>
+                </li>
+                @if (trendsUrl != null)
+                {
+                    <li>
+                        <a class="nav-link" href="@trendsUrl">Trends</a>
+                    </li>
+                }
+            </ul>
+        }
+        @if (Items != null)
+        {
+            if (Items.Count > 0)
+            {
+                <SortButton TType="@OutcomeOverviewSortType" @bind-Current="@SortDescriptor" Changed="@OnSortChanged" />
+                <div class="clear"></div>
+
+                <div class="cards">
+                    <ExpenseCardContext>
+                        @foreach (var item in Items)
+                        {
+                            <ExpenseCard Model="@item" />
+                        }
+                    </ExpenseCardContext>
+                </div>
+
+                <Paging Context="@PagingContext" />
+            }
+            else
+            {
+                <Alert Title="No data." Message="Let's add some expenses." Mode="@AlertMode.Warning" />
+            }
+        }
+    </Loading>
+</div>

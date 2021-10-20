@@ -1,0 +1,57 @@
+﻿@inherits ModalDialog
+
+<Modal @ref="Modal" Title="Set Exchange Rate" Size="@Size.Small">
+    <ChildContent>
+        <Validation ErrorMessages="@ErrorMessages" />
+        <div class="form-group">
+            <label for="exchangerate-source">Source Currency:</label>
+            <select class="form-control" id="exchangerate-source" @bind="@SourceCurrency" data-autofocus>
+                @if (Currencies != null)
+                {
+                    @foreach (var currency in Currencies)
+                    {
+                        if (currency.UniqueCode != TargetCurrency)
+                        {
+                            if (SourceCurrency == null)
+                            {
+                                SourceCurrency = currency.UniqueCode;
+                            }
+
+                            <option value="@currency.UniqueCode">
+                                @currency.Symbol
+                            </option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exchangerate-rate">Rate:</label>
+            <input type="number" class="form-control" id="exchangerate-rate" @bind="@Rate" />
+        </div>
+        <div class="form-group">
+            <label for="exchangerate-target">Target Currency:</label>
+            <select class="form-control" id="exchangerate-target" disabled>
+                @if (Currencies != null)
+                {
+                    @foreach (var currency in Currencies)
+                    {
+                        if (currency.UniqueCode == TargetCurrency)
+                        {
+                            <option value="@currency.UniqueCode">
+                                @currency.Symbol
+                            </option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exchangevalidfrom-validfrom">Valid from:</label>
+            <input type="date" class="form-control" id="exchangevalidfrom-validfrom" @bind="@ValidFrom" @bind:format="yyy-MM-dd" />
+        </div>
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-primary" @onclick="@OnSaveClick">Save</button>
+    </Buttons>
+</Modal>

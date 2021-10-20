@@ -1,0 +1,18 @@
+﻿@inherits ModalDialog
+
+<Modal @ref="Modal" Title="@Title">
+    <ChildContent>
+        <Validation ErrorMessages="@ErrorMessages" />
+        <div class="form-group">
+            <label for="category-name">Name:</label>
+            <input type="text" class="form-control" id="category-name" placeholder="Category Name" data-autofocus @bind="@Name" />
+        </div>
+        <div class="form-group">
+            <label for="category-description">Description:</label>
+            <input type="text" class="form-control" id="category-description" placeholder="Category Description" @bind="@Description" />
+        </div>
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-primary" @onclick="@OnSaveClick">@SaveButtonText</button>
+    </Buttons>
+</Modal>

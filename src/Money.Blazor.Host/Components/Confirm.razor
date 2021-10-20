@@ -1,0 +1,10 @@
+﻿@inherits ModalDialog
+
+<Modal @ref="Modal" Title="Money" CloseButtonText="No" Size="@Size.Small">
+    <ChildContent>
+        @Message
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-primary" @onclick="@OnPrimaryButtonClick">Yes</button>
+    </Buttons>
+</Modal>

@@ -1,0 +1,29 @@
+﻿@page "/user"
+@attribute [Authorize]
+
+<UserHead />
+
+<div class="user">
+    <ExceptionPanel />
+
+    @if (IsSuccess)
+    {
+        <Alert Message="Your email has been changed." Mode="AlertMode.Success" IsDismissible="true" />
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" @onsubmit="@OnFormSubmit">
+                <div class="form-group">
+                    <label for="UserName">User name:</label>
+                    <input class="form-control" disabled type="text" id="UserName" value="@UserName" />
+                </div>
+                <div class="form-group">
+                    <label for="Email">E-mail:</label>
+                    <input class="form-control" autofocus type="email" id="Email" @bind="@Email" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿<button type="submit" class="btn btn-link navbar-btn navbar-link" title="@ToolTip" @onclick="@Click">
+    <Icon Identifier="@Icon" />
+</button>
+
+@code
+{
+    [Parameter]
+    public string Icon { get; set; }
+
+    [Parameter]
+    public string ToolTip { get; set; }
+
+    [Parameter]
+    public Action Click { get; set; }
+}

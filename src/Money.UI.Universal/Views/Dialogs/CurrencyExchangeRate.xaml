@@ -1,0 +1,28 @@
+﻿<ContentDialog
+    x:Class="Money.Views.Dialogs.CurrencyExchangeRate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Money.Views.Converters"
+    mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="548"
+    Title="Set exchange rate" PrimaryButtonText="Save">
+    <ContentDialog.Resources>
+        <converters:DateTimeOffsetToDateTimeConverter x:Key="DateTimeOffsetToDateTimeConverter" />
+    </ContentDialog.Resources>
+    <StackPanel>
+        <TextBlock x:Name="tblError" Style="{StaticResource ErrorMessageStyle}" />
+
+        <TextBlock Text="Source currency" />
+        <ComboBox x:Name="cbxCurrency" SelectionChanged="cbxCurrency_SelectionChanged" DisplayMemberPath="Symbol" HorizontalAlignment="Stretch" Grid.Column="1" />
+
+        <TextBlock Text="Rate" />
+        <TextBox x:Name="tbxRate" Text="{x:Bind Rate, Mode=TwoWay}" KeyDown="tbxRate_KeyDown" />
+
+        <TextBlock Text="Target currency" />
+        <TextBox Text="{x:Bind TargetCurrencyModel.Symbol}" IsReadOnly="True" />
+
+        <TextBlock Text="Valid from" />
+        <DatePicker x:Name="dpkValidFrom" Date="{x:Bind ValidFrom, Converter={StaticResource DateTimeOffsetToDateTimeConverter}, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+    </StackPanel>
+</ContentDialog>

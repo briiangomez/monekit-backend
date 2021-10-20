@@ -1,0 +1,72 @@
+﻿<Modal @ref="Modal" Title="@Title">
+    <ChildContent>
+        <Validation ErrorMessages="@ErrorMessages" />
+        <div class="form-row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label for="expense-amount">Amount:</label>
+                    <AmountBox Id="expense-amount" AutoFocus="true" AutoSelect="true" @bind-Value="@Amount" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="expense-currency">Currency:</label>
+                    <select class="form-control" id="expense-currency" @bind="@Currency">
+                        @if (Currencies != null)
+                        {
+                            @foreach (var currency in Currencies)
+                            {
+                                <option value="@currency.UniqueCode">
+                                    @currency.Symbol
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="expense-description">Description:</label>
+            <input type="text" class="form-control" id="expense-description" @bind="@Description" />
+        </div>
+        <div class="form-group">
+            <label for="expense-when">When:</label>
+            <DateBox Id="expense-when" @bind-Value="When" />
+        </div>
+        <div class="form-group">
+            <label>Category:</label>
+            @if (Categories != null)
+            {
+                <div class="form-row">
+                    @foreach (var category in Categories)
+                    {
+                        <div class="col-6 col-md-4 mb-2">
+                            <button type="button" class="btn btn-block btn-selectable h-100 @(category.Key.Equals(CategoryKey) ? "btn-selectable-selected" : "") @category.Color.SelectAccent("back-dark", "back-light")" style="background-color: @category.Color.ToHashCode();" @onclick="@(() => CategoryKey = category.Key)">
+                                <div>
+                                    <h2>@category.Icon</h2>
+                                </div>
+                                <div class="text-truncate">
+                                    <strong>@category.Name</strong>
+                                </div>
+                                <div class="text-truncate">
+                                    <span>@category.Description</span>
+                                </div>
+                            </button>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" @bind="IsFixed" />
+                Fixed
+                <span class="text-muted">(doesn't shown in summary)</span>
+            </label>
+        </div>
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-primary" @onclick="@OnSaveClick">@SaveButtonText</button>
+    </Buttons>
+</Modal>
+<Confirm @ref="PrerequisitesConfirm" Message="To create an expense, you need to first create a currency and category." OnConfirmed="OnPrerequisitesConfirmed" />

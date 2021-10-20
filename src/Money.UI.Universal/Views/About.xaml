@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="Money.Views.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Money.Views.Controls"
+    mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar />
+    </Page.BottomAppBar>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollMode="Auto">
+        <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="16" MaxWidth="800" HorizontalAlignment="Left">
+            <TextBlock Text="Money" Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock Text="Neptuo" />
+            <TextBlock Text="v1.1.0" Opacity=".5" />
+
+            <HyperlinkButton Content="Documentation" NavigateUri="http://www.neptuo.com/project/universal/money" Margin="0,16,0,0" />
+            <HyperlinkButton Content="Report an issue" NavigateUri="https://github.com/maraf/Money/issues/new" />
+
+            <TextBlock Text="Test database" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,16,0,0" />
+            <ToggleSwitch x:Name="DatabaseSwitch" Toggled="DatabaseSwitch_Toggled" />
+
+            <TextBlock Text="Your data" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,16,0,8" />
+            <TextBlock Text="With these tools you can export all your data as zip archive. Than you can use this zip to import them on other device. You should not modify the archive if you want everything to go smooth." Opacity=".5" TextWrapping="Wrap" Margin="0,0,0,8" />
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="ExportButton" Click="ExportButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Download" />
+                        <TextBlock Text="Export" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="ImportButton" Click="ImportButton_Click" Margin="16,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Upload" />
+                        <TextBlock Text="Import" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+            <TextBlock Text="This enables you to drop everthing you added here. This operation is irreversible!" Opacity=".5" TextWrapping="Wrap" Margin="0,8" />
+            <Button x:Name="DeleteButton" Click="DeleteButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Delete" />
+                    <TextBlock Text="Delete all your data" />
+                </StackPanel>
+            </Button>
+
+            <TextBlock x:Name="DevelopmentToolsTitle" Text="Development Tools" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,16,0,0" />
+            <controls:DevelopmentTools x:Name="DevelopmentTools" Orientation="Horizontal" />
+            <controls:LastException Margin="0,16,0,0" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
